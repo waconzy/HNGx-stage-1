@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  h1 {
+    padding-left: 10px;
+  }
+  img {
+    padding: 5px 20px 0px 20px;
+    max-width: 40%;
+    border-radius: 50px;
+  }
+  .date {
+    display: flex;
+    gap: 2px;
+    padding: 10px 10px 10px 10px ;
+  }
+
+  .time {
+    padding: 10px 10px 10px 10px;
+  }
+
+  a {
+    padding: 10px 10px 10px 10px;
+  }
+  .track {
+    padding: 10px 10px 10px 10px;
+  }
