@@ -8,76 +8,79 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 data-testid="slackUserName">Olawale Olatona</h1>
-    <img data-testid="slackDisplayImage" src="img/image.jpeg" alt="olawale olatona"  >
-    <div data-testid="currentDayOfTheWeek" class="date"></div>
-    <div data-testid="currentUTCTime" class="time"></div>
-    <div data-testid="myTrack" class="track">My track: <b> Frontend </b></div>
-    <a data-testid=“githubURL” href=https://github.com/waconzy/HNGx-stage-1.git>githubURL</a>
-    
-
+    <div class="container">
+        <header>
+            <div class="profile">
+                <p data-testid="slackUserName">olawale olatona</p>
+                <div class="image">
+                    <img
+                        src="img/image.jpeg"
+                        alt="olawale olatona"
+                        data-testid="slackDisplayImage" />
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="main-container">
+                <div>
+                    <p>Day :</p>
+                    <p data-testid="currentDayOfTheWeek"></p>
+                </div>
+                <div>
+                    <p>Current UTC Time :</p>
+                    <p data-testid="currentUTCTime"></p>
+                </div>
+                <div>
+                    <p>Track :</p>
+                    <p data-testid="myTrack">Frontend</p>
+                </div>
+                <div>
+                    <p>Github Link :</p>
+                    <a
+                        href="https://github.com/waconzy/HNGx-stage-1.git"
+                        data-testid="githubURL"
+                        >Visit Github</a>
+                </div>
+            </div>
+        </main>
+    </div>
     <script>
-        let dateContainer = document.querySelector(".date");
-const weekdays = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+        function updateCurrentDayOfTheWeek() {
+	const daysOfWeek = [
+		'Sunday',
+		'Monday',
+		'Tuesday',
+		'Wednesday',
+		'Thursday',
+		'Friday',
+		'Saturday',
+	];
+	const currentDate = new Date();
+	const options = { weekday: 'long', timeZone: 'Africa/Lagos' };
+	const currentDay = new Intl.DateTimeFormat('en-US', options).format(
+		currentDate
+	);
+	document.querySelector('[data-testid="currentDayOfTheWeek"]').textContent =
+		currentDay;
+}
 
-const dateClock = setInterval(function dateTime() {
-  const today = new Date();
-  let date = today.getDate();
-  let day = weekdays[today.getDay()];
-  let month = monthNames[today.getMonth()];
 
-  dateContainer.innerHTML = `<p>Current Day Of The Week:</p><p>${day}</p>`;
-}, 1000);
+updateCurrentDayOfTheWeek();
 
-        setInterval(()=>{
-            const time = document.querySelector(".time");
-        let date = new Date();
-        let hours = date.getHours()
-        let minutes = date.getMinutes()
-        let seconds = date.getSeconds()
-        let milliseconds = date.getMilliseconds();
-        let day_night = 'AM';
-        if (hours > 12){
-            day_night = 'PM'
-            hours = hours - 12;
-        }
-        if (minutes < 10){
-            minutes = '0' + minutes;
-        }
-        if (hours < 10){
-            hours = '0' + hours;
-        }
-        if (seconds < 10){
-            seconds = '0' + seconds;
-        }
-        if (milliseconds < 10){
-            seconds = '0' + milliseconds;
-        }
-       
-        time.textContent = 'UTC+1 WAT ' + hours + ':' + minutes + ':' + seconds +':' + milliseconds + ' ' + day_night +  ' GMT+1';
-        })
-    </script>
+setInterval(updateCurrentDayOfTheWeek, 86400000);
+
+function updateCurrentLocalTime() {
+	const currentDate = new Date();
+	const options = { timeZone: 'Africa/Lagos' }; 
+	const localTime = currentDate.toLocaleTimeString('en-US', options);
+	const utcTimeMilliseconds = currentDate.getTime(); 
+	document.querySelector('[data-testid="currentUTCTime"]').textContent =
+		'Local Time: ' + localTime + ' | UTC Time (ms): ' + utcTimeMilliseconds;
+}
+
+updateCurrentLocalTime();
+
+setInterval(updateCurrentLocalTime, 1000);
+</script>    
 </body>
 </html>
