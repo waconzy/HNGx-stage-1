@@ -48,7 +48,7 @@ const dateClock = setInterval(function dateTime() {
   let day = weekdays[today.getDay()];
   let month = monthNames[today.getMonth()];
 
-  dateContainer.innerHTML = `<p>Current Day Of The Week:</p><p>${day}</p><p>${month}</p>`;
+  dateContainer.innerHTML = `<p>Current Day Of The Week:</p><p>${day}</p><p>-${month}</p>`;
 }, 1000);
 
         setInterval(()=>{
@@ -76,7 +76,7 @@ const dateClock = setInterval(function dateTime() {
             seconds = '0' + milliseconds;
         }
        
-        time.textContent = 'UTC+1 WAT' + hours + ':' + minutes + ':' + seconds +':' + ' ' + day_night +  'GMT+1';
+        time.textContent = 'UTC+1 WAT ' + hours + ':' + minutes + ':' + seconds +':' + ' ' + day_night +  ' GMT+1';
         })
     </script>
 </body>
